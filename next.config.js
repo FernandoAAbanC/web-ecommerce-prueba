@@ -4,7 +4,7 @@ const defaultLocale = "es-MX";
 module.exports = {
   env: {  
     URL_HOST:process.env.HOST|| "http://localhost:8081",
-    URL_SERVER: process.env.SERVER || "http://localhost:8081",
+    URL_SERVER: "https://api-ecommerce-prueba.herokuapp.com/",
   },
   async rewrites() {
     return [
