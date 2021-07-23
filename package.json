@@ -18,9 +18,7 @@
     "react-toastify": "^7.0.4",
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
-    "superagent": "^6.1.0"
-  },
-  "devDependencies": {
+    "superagent": "^6.1.0",
     "@types/node": "^14.14.43",
     "@types/react": "^17.0.4",
     "@fullhuman/postcss-purgecss": "^4.0.3",
