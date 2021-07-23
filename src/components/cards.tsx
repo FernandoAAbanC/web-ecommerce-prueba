@@ -1,29 +1,73 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { ICars } from "~/interfaces/cars";
-
+import { useDispatch, connect } from "react-redux";
+import { addToCart } from "~/redux/actions";
+import { IInitialState, Tcurrency } from "~/interfaces/stateRedux";
+import { ToastContainer, toast } from 'react-toastify';
 interface IProps {
   product: ICars;
   key: string;
+  currency: Tcurrency;
 }
-export const Card = (props: IProps) => {
-  const { _id, name } = props.product;
+const Card = (props: IProps) => {
+  let dispatch = useDispatch();
+  const [product, setProduct] = useState<ICars>();
+
+  useEffect(() => {
+    if (product?.models.length) {
+      product.modeloSelect = product.models[0];
+    }
+  }, [product]);
+
+  useEffect(() => {
+    setProduct(props.product);
+  }, [props.product]);
+
   return (
     <div className="wrapper m-2 w-72 bg-theme-base2 text-theme-base rounded-b-md shadow-lg overflow-hidden">
+      <ToastContainer />
       <div>
-        <img
-          src="/img/card.webp"
-          alt="car"
-        />
+        <img src="/img/car.webp" alt="car" />
       </div>
       <div className="p-3 space-y-3">
-        <h3 className="text-gray-700 font-semibold text-md">{name}</h3>
-        <p className="text-sm text-gray-900 leading-sm">
-          Bienvenido a la montaña de nepal un maravilloso lugar en el que podras
-          escalar y repirar aire limpio, serás acompoañado por profesonales en
-          alpinismo.
+        <h3 className="text-gray-700 font-semibold text-md">{product?.name}</h3>
+        <div className="flex justify-between">
+          <p className="flex  text-sm  leading-sm">{product?.maker}</p>
+          {product?.models.length ? (
+            <select name="" id=""
+            onChange={(e)=> product.modeloSelect = e.target.value }
+            >
+              {product?.models?.map((item, index) => {
+                return (
+                  <option key={`model-${index}`} value={item}>
+                    {item}
+                  </option>
+                );
+              })}
+            </select>
+          ) : null}
+        </div>
+
+        <p className="text-sm  leading-sm">{product?.car_type}</p>
+        <p className="text-sm  leading-sm">
+          {props.currency === "mx" ? product?.price_mxn : product?.price_usd}
+        </p>
+        <p className="text-sm leading-sm">
+          {props.currency === "mx"
+            ? product?.description_es
+            : product?.description_en}
         </p>
       </div>
-      <button className="bg-theme-base w-full flex justify-center py-2 text-theme-base2 font-semibold transition duration-300 hover:bg-teal-500">
+      <button
+        className="bg-theme-base w-full flex justify-center py-2 text-theme-base2 font-semibold transition duration-300 hover:bg-teal-500"
+        onClick={() => {
+          toast.success(`Se agrego : ${product.maker} Modelo :${product.name}`,{
+            position:toast.POSITION.BOTTOM_RIGHT,
+            
+          })
+          dispatch(addToCart(product))
+        }}
+      >
         <svg
           fill="currentColor"
           viewBox="0 0 20 20"
@@ -41,3 +85,9 @@ export const Card = (props: IProps) => {
     </div>
   );
 };
+const mapStateToProps = (state: IInitialState) => {
+  return {
+    currency: state.currency,
+  };
+};
+export default connect(mapStateToProps)(Card);

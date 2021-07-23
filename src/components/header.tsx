@@ -1,10 +1,73 @@
-import React  from "react";
-
-const Header =()=> {
-    return(
-        <div className="flex fixed w-full h-20 bg-theme-base">
-asd
+import React from "react";
+import { useDispatch, connect } from "react-redux";
+import { changeCurrency } from "~/redux/actions";
+import { IInitialState } from "~/interfaces/stateRedux";
+import { Tcurrency } from "~/interfaces/stateRedux";
+import ShoppingCard from "~/components/shoppingCard";
+const Header = (props) => {
+  let dispatch = useDispatch();
+  return (
+    <>
+      <div className="flex justify-between fixed w-full h-20 bg-theme-base">
+        <div
+          onClick={() => (location.href = "/")}
+          className="flex cursor-pointer justify-center mt-auto mb-auto ml-3 items-center font-bold border-4 border-theme-base3 text-theme-base3 border-opacity-50 h-10 w-32"
+        >
+          Logo
         </div>
-    )
-}
-export default Header;
+        <div className="flex flex-row  h-20 w-50">
+          <div className="flex justify-center items-center mr-4 h-20 w-30">
+            <label className="text-theme-base2">{`Moneda : `}</label>
+            <select
+              className="h-8 w-20 "
+              onChange={(e) => {
+                let currency = e.target.value;
+
+                dispatch(changeCurrency(currency));
+              }}
+            >
+              <option value="mx">Mx</option>
+              <option value="us">Us</option>
+            </select>
+          </div>
+          <div
+            className="flex cursor-pointer relative h-20 w-20 "
+            onClick={() => {
+              let modal = document.getElementById("ShoppingCart");
+              modal.style.display = "flex";
+              modal.classList.remove("hidden");
+              modal.classList.add("flex");
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="cursor-pointer h-20 w-20 text-white hover:bg-gray-100 hover:text-theme-base"
+              fill="none"
+              viewBox="-10 -10 50 50"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
+            <label className=" cursor-pointer flex w-4 h-4 justify-center items-center text-theme-base fixed  border-white right-6 top-3 bg-theme-base2 rounded-lg ">
+              {props.cartcount}
+            </label>
+          </div>
+        </div>
+      </div>
+      <ShoppingCard />
+    </>
+  );
+};
+const mapStateToProps = (state: IInitialState) => {
+  return {
+    currency: state.currency,
+    cartcount: state.cartcount,
+  };
+};
+
+export default connect(mapStateToProps)(Header);

@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { GetAllProducts } from "~/api/endpoints/products";
 import { ICars } from "~/interfaces/cars";
-import {Card} from "~/components/cards";
+import Card from "~/components/cards";
+import { useDispatch , connect } from "react-redux";
+import {addToCart} from "~/redux/actions";
+import { IInitialState } from "~/interfaces/stateRedux";
 
-export default function Home () {
+const Home =(props)=> { 
+  let dispatch = useDispatch();
   const [products, setProducts] = useState<ICars[]>();
 
   useEffect(() => {
@@ -34,4 +38,11 @@ export default function Home () {
     </div>
   );
 };
+const mapStateToProps = (state: IInitialState) => {
+  return {
+    currency: state.currency
+  };
+};
+
+export default connect(mapStateToProps)(Home);
 

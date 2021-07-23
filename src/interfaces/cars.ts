@@ -1,3 +1,5 @@
+
+
 export interface ICars {
   _id: string;
   name: string;
@@ -7,5 +9,8 @@ export interface ICars {
   price_usd: number;
   description_es: string;
   description_en:string;
-  modelo: string[];
+  models: string[];
+  cantidad?:number;
+  modeloSelect?:string;
 }
+
