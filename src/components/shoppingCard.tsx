@@ -3,6 +3,7 @@ import { IInitialState } from "~/interfaces/stateRedux";
 import { useDispatch, connect } from "react-redux";
 import { ICars } from "~/interfaces/cars";
 import { removeFromCart, emptyCart } from "~/redux/actions";
+import { formatoCurrency } from "~/utils/utils";
 
 const ShoppingCard = (props: IInitialState) => {
   let dispatch = useDispatch();
@@ -49,10 +50,10 @@ const ShoppingCard = (props: IInitialState) => {
                 </div>
 
                 <div className="flex justify-end flex-row">
-                  <span className="flex justify-center items-center font-semibold w-24 h-4 bg-theme-base text-theme-base2">{`$ : ${
+                  <span className="flex justify-center items-center font-semibold w-32 h-4 bg-theme-base text-theme-base2">{`$ : ${
                     props.currency === "mx"
-                      ? item?.cantidad * item.price_mxn
-                      : item.cantidad * item.price_usd
+                      ? formatoCurrency(item?.cantidad * item.price_mxn)
+                      : formatoCurrency(item.cantidad * item.price_usd)
                   }`}</span>
                   <span className="flex justify-center items-center font-semibold bg-red-700 text-theme-base2 w-4 h-4">
                     {item?.cantidad}
@@ -71,14 +72,18 @@ const ShoppingCard = (props: IInitialState) => {
         })}
       </div>
       <div className="">
-        {`Total : ${shoppingCart?.reduce((sum, item) => {
-          return (
-            sum +
-            (props.currency === "mx"
-              ? item.price_mxn * item.cantidad
-              : item.price_usd * item.cantidad)
-          );
-        }, 0)}`}
+        {shoppingCart
+          ? `Total : ${formatoCurrency(
+              shoppingCart.reduce((sum, item) => {
+                return (
+                  sum +
+                  (props.currency === "mx"
+                    ? item.price_mxn * item.cantidad
+                    : item.price_usd * item.cantidad)
+                );
+              }, 0)
+            )}`
+          : null}
       </div>
       <div className="">
         <button
@@ -90,8 +95,9 @@ const ShoppingCard = (props: IInitialState) => {
           vaciar
         </button>
         <button
-        onClick={() => (location.href = "/detail")} 
-        className="bg-theme-base text-theme-base2 w-32 h-8 m-2">
+          onClick={() => (location.href = "/detail")}
+          className="bg-theme-base text-theme-base2 w-32 h-8 m-2"
+        >
           comprar
         </button>
       </div>

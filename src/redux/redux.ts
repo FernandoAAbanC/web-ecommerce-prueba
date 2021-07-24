@@ -8,8 +8,6 @@ const initialState: IInitialState = {
   currency: "mx",
 };
 export default function Cars(state = initialState, action) {
-  const updatedCart = [...state.cart];
-  let updatedCartcount = [...state.cart];
   switch (action.type) {
     case types.CHANGE_CURRENCY:
       state.currency = action.currency;
@@ -19,11 +17,10 @@ export default function Cars(state = initialState, action) {
       };
 
     case types.ADD_TO_CART:
-      
+      const updatedCart = [...state.cart];
       const updatedItemIndex = updatedCart.findIndex(
         (item) => item._id === action.product._id
       );
-
       if (updatedItemIndex < 0) {
         updatedCart.push({ ...action.product, cantidad: 1 });
       } else {
@@ -33,11 +30,31 @@ export default function Cars(state = initialState, action) {
         updatedItem.cantidad++;
         updatedCart[updatedItemIndex] = updatedItem;
       }
-      
+
       return {
         ...state,
         cart: updatedCart,
-        cartcount: updatedCart.length
+        cartcount: updatedCart.length,
+      };
+    case types.MINUS_TO_CART:
+      const minusCart = [...state.cart];
+      const minusItemIndex = minusCart.findIndex(
+        (item) => item._id === action.product._id
+      );
+      const updatedItem = {
+        ...minusCart[minusItemIndex],
+      };
+      updatedItem.cantidad--;
+      if (updatedItem.cantidad <= 0) {
+        minusCart.splice(minusItemIndex, 1);
+      } else {
+        minusCart[minusItemIndex] = updatedItem;
+      }
+
+      return {
+        ...state,
+        cart: minusCart,
+        cartcount: minusCart.length,
       };
     case types.REMOVE_FROM_CART:
       return {
@@ -48,6 +65,7 @@ export default function Cars(state = initialState, action) {
       return {
         ...state,
         cart: [],
+        cartcount: 0,
       };
     default:
       return {

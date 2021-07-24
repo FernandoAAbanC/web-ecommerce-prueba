@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, connect } from "react-redux";
 import { changeCurrency } from "~/redux/actions";
 import { IInitialState } from "~/interfaces/stateRedux";
 import { Tcurrency } from "~/interfaces/stateRedux";
 import ShoppingCard from "~/components/shoppingCard";
 const Header = (props) => {
+  const [cartcount, setCartcount] = useState();
+  useEffect(()=>{
+    setCartcount(props.cartcount)
+  },[props.cartcount])
   let dispatch = useDispatch();
   return (
     <>
@@ -17,12 +21,12 @@ const Header = (props) => {
         </div>
         <div className="flex flex-row  h-20 w-50">
           <div className="flex justify-center items-center mr-4 h-20 w-30">
-            <label className="text-theme-base2">{`Moneda : `}</label>
+            <label  htmlFor="currency" className="text-theme-base2"> Moneda :</label>
             <select
+            id="currency"
               className="h-8 w-20 "
               onChange={(e) => {
-                let currency = e.target.value;
-
+                let currency = e.target.value as Tcurrency;
                 dispatch(changeCurrency(currency));
               }}
             >
@@ -54,7 +58,7 @@ const Header = (props) => {
               />
             </svg>
             <label className=" cursor-pointer flex w-4 h-4 justify-center items-center text-theme-base fixed  border-white right-6 top-3 bg-theme-base2 rounded-lg ">
-              {props.cartcount}
+              {cartcount}
             </label>
           </div>
         </div>

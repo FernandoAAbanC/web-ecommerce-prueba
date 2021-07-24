@@ -4,6 +4,7 @@ import { useDispatch, connect } from "react-redux";
 import { addToCart } from "~/redux/actions";
 import { IInitialState, Tcurrency } from "~/interfaces/stateRedux";
 import { ToastContainer, toast } from 'react-toastify';
+import { formatoCurrency } from "~/utils/utils";
 interface IProps {
   product: ICars;
   key: string;
@@ -49,8 +50,8 @@ const Card = (props: IProps) => {
         </div>
 
         <p className="text-sm  leading-sm">{product?.car_type}</p>
-        <p className="text-sm  leading-sm">
-          {props.currency === "mx" ? product?.price_mxn : product?.price_usd}
+        <p className="text-sm  leading-sm"> $
+          {props.currency === "mx" ? formatoCurrency(product?.price_mxn) : formatoCurrency(product?.price_usd)}
         </p>
         <p className="text-sm leading-sm">
           {props.currency === "mx"

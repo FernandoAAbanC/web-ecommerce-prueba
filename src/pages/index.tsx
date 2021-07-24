@@ -3,23 +3,19 @@ import Head from "next/head";
 import { GetAllProducts } from "~/api/endpoints/products";
 import { ICars } from "~/interfaces/cars";
 import Card from "~/components/cards";
-import { useDispatch , connect } from "react-redux";
-import {addToCart} from "~/redux/actions";
+import { connect } from "react-redux";
+
 import { IInitialState } from "~/interfaces/stateRedux";
 
-const Home =(props)=> { 
-  let dispatch = useDispatch();
+const Home = (props) => {
+ 
   const [products, setProducts] = useState<ICars[]>();
 
   useEffect(() => {
-
-    GetAllProducts().then((product)=> {
+    GetAllProducts().then((product) => {
       setProducts(product);
-      console.log("respuesa del api", product);
     });
-   
-    
-  },[products === []]);
+  }, [products === []]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -29,10 +25,8 @@ const Home =(props)=> {
       </Head>
 
       <div className="flex flex-wrap items-center justify-center   w-3/4 mt-32">
-        {products?.map((product, index)=>{
-          return(
-            <Card key= {`card-${index}`} product={product} />
-          )
+        {products?.map((product, index) => {
+          return <Card key={`card-${index}`} product={product} />;
         })}
       </div>
     </div>
@@ -40,9 +34,8 @@ const Home =(props)=> {
 };
 const mapStateToProps = (state: IInitialState) => {
   return {
-    currency: state.currency
+    currency: state.currency,
   };
 };
 
 export default connect(mapStateToProps)(Home);
-
