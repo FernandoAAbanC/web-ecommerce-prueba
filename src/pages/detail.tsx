@@ -90,10 +90,10 @@ const Detail = (props: IInitialState) => {
                         {item?.cantidad}
                       </span>
                       <span className="flex justify-left items-center font-semibold w-42 h-4 text-theme-base">{` $ ${
-                        props.currency === "mx"
+                       item? props.currency === "mx"
                           ? formatoCurrency(item.cantidad * item.price_mxn)
                           : formatoCurrency(item.cantidad * item.price_usd)
-                      } ${props.currency}`}</span>
+                          :null} ${props.currency}`}</span>
                     </div>
                     {item.name}
                   </div>

@@ -51,9 +51,11 @@ const ShoppingCard = (props: IInitialState) => {
 
                 <div className="flex justify-end flex-row">
                   <span className="flex justify-center items-center font-semibold w-32 h-4 bg-theme-base text-theme-base2">{`$ : ${
-                    props.currency === "mx"
-                      ? formatoCurrency(item?.cantidad * item.price_mxn)
-                      : formatoCurrency(item.cantidad * item.price_usd)
+                    item
+                      ? props.currency === "mx"
+                        ? formatoCurrency(item?.cantidad * item.price_mxn)
+                        : formatoCurrency(item.cantidad * item.price_usd)
+                      : null
                   }`}</span>
                   <span className="flex justify-center items-center font-semibold bg-red-700 text-theme-base2 w-4 h-4">
                     {item?.cantidad}

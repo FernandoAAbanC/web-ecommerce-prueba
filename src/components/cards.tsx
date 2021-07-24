@@ -3,7 +3,7 @@ import { ICars } from "~/interfaces/cars";
 import { useDispatch, connect } from "react-redux";
 import { addToCart } from "~/redux/actions";
 import { IInitialState, Tcurrency } from "~/interfaces/stateRedux";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import { formatoCurrency } from "~/utils/utils";
 interface IProps {
   product: ICars;
@@ -35,8 +35,10 @@ const Card = (props: IProps) => {
         <div className="flex justify-between">
           <p className="flex  text-sm  leading-sm">{product?.maker}</p>
           {product?.models.length ? (
-            <select name="" id=""
-            onChange={(e)=> product.modeloSelect = e.target.value }
+            <select
+              name=""
+              id=""
+              onChange={(e) => (product.modeloSelect = e.target.value)}
             >
               {product?.models?.map((item, index) => {
                 return (
@@ -50,23 +52,33 @@ const Card = (props: IProps) => {
         </div>
 
         <p className="text-sm  leading-sm">{product?.car_type}</p>
-        <p className="text-sm  leading-sm"> $
-          {props.currency === "mx" ? formatoCurrency(product?.price_mxn) : formatoCurrency(product?.price_usd)}
+        <p className="text-sm  leading-sm">
+          {" "}
+          $
+          {product
+            ? props.currency === "mx"
+              ? formatoCurrency(product?.price_mxn)
+              : formatoCurrency(product?.price_usd)
+            : null}
         </p>
         <p className="text-sm leading-sm">
-          {props.currency === "mx"
-            ? product?.description_es
-            : product?.description_en}
+          {product
+            ? props.currency === "mx"
+              ? product?.description_es
+              : product?.description_en
+            : null}
         </p>
       </div>
       <button
         className="bg-theme-base w-full flex justify-center py-2 text-theme-base2 font-semibold transition duration-300 hover:bg-teal-500"
         onClick={() => {
-          toast.success(`Se agrego : ${product.maker} Modelo :${product.name}`,{
-            position:toast.POSITION.BOTTOM_RIGHT,
-            
-          })
-          dispatch(addToCart(product))
+          toast.success(
+            `Se agrego : ${product.maker} Modelo :${product.name}`,
+            {
+              position: toast.POSITION.BOTTOM_RIGHT,
+            }
+          );
+          dispatch(addToCart(product));
         }}
       >
         <svg
