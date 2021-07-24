@@ -19,18 +19,18 @@ const Detail = (props: IInitialState) => {
   }, [props.cart]);
   return (
     <div className="flex justify-center items-center w-full ">
-      <div className="flex w-11/12 h-full flex-col mt-32 bg-theme-base2  min-h-screen py-2 top-32 text-theme-base">
+      <div className="flex p-4 w-11/12 h-full flex-col mt-32 bg-white min-h-screen py-2 top-32 text-theme-base">
         <h1 className="flex item-center m-4 self-center font-bold text-2xl ">
           1. Resumen de compra
         </h1>
-        <div className="flex flex-row">
-          <div className="w-3/5 max-h-96 h-full ">
-            <div className="ml-5 pt-3 max-h-80 overflow-y-auto bg-theme-base3">
+        <div className="flex w-full flex-col-reverse md:flex-col-reverse lg:flex-row">
+          <div className="w-full  h-full  lg:w-3/5">
+            <div className="border-2 p-3 m-3 lg:p-5 lg:pt-3">
               {detailCart?.map((item, index) => {
                 return (
                   <div
+                    className="flex flex-row bg-theme-base3 mb-5 w-full h-32 shadow-md"
                     key={`detail-order${index}`}
-                    className="relative flex flex-row mb-1 w-full h-32 shadow-md"
                   >
                     <div className="w-32 h-32 rounded-l">
                       <img
@@ -77,12 +77,12 @@ const Detail = (props: IInitialState) => {
               })}
             </div>
           </div>
-          <div className="relative w-2/5  flex justify-center   ">
-            <div className="relative  flex-col  w-80 right-0 h-72 bg-theme-base3 ">
+          <div className="flex justify-center w-full lg:w-2/5 ">
+            <div className="flex w-full p-3 border-2 m-3  flex-col h-72 lg:p-5 lg:pt-3">
               {detailCart?.map((item, index) => {
                 return (
                   <div
-                    className=" shadow-2xl h-10 flex justify-between items-center m-1"
+                    className="flex shadow-2xl h-10 justify-between items-center mb-1 p-2 bg-theme-base3"
                     key={`payment-${index}`}
                   >
                     <div className="flex justify-end flex-row">
@@ -90,16 +90,18 @@ const Detail = (props: IInitialState) => {
                         {item?.cantidad}
                       </span>
                       <span className="flex justify-left items-center font-semibold w-42 h-4 text-theme-base">{` $ ${
-                       item? props.currency === "mx"
-                          ? formatoCurrency(item.cantidad * item.price_mxn)
-                          : formatoCurrency(item.cantidad * item.price_usd)
-                          :null} ${props.currency}`}</span>
+                        item
+                          ? props.currency === "mx"
+                            ? formatoCurrency(item.cantidad * item.price_mxn)
+                            : formatoCurrency(item.cantidad * item.price_usd)
+                          : null
+                      } ${props.currency}`}</span>
                     </div>
                     {item.name}
                   </div>
                 );
               })}
-              <div className="">
+              <div className=" p-3">
                 {detailCart
                   ? `Total : ${formatoCurrency(
                       detailCart.reduce((sum, item) => {
@@ -113,9 +115,9 @@ const Detail = (props: IInitialState) => {
                     )}`
                   : null}
               </div>
-              <div className="">
+              <div className=" w-full h-10">
                 <button
-                  className="absolute bottom-0 w-full h-10  bg-theme-base text-theme-base3"
+                  className=" w-full h-10  bg-theme-base text-theme-base3"
                   onClick={() => (location.href = "/thank_you")}
                 >
                   Pagar

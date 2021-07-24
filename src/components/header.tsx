@@ -20,7 +20,7 @@ const Header = (props) => {
           onClick={() => (location.href = "/")}
           className="flex cursor-pointer justify-center mt-auto mb-auto ml-3 items-center font-bold border-4 border-theme-base3 text-theme-base3 border-opacity-50 h-10 w-32"
         >
-          Logo
+          Inicio
         </div>
         <div className="flex flex-row  h-20 w-50">
           <div className="flex justify-center items-center mr-4 h-20 w-30">
