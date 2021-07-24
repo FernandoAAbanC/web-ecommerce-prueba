@@ -1,7 +1,16 @@
-/* purgecss start ignore */
+/* Write your own custom base styles here */
+
+/* Start purging... */
+@import "tailwindcss/components";
+/* Stop purging. */
+
+/* Write you own custom component styles here */
+
+/* Start purging... */
+@import "tailwindcss/utilities";
+/* Stop purging. */
+
+
+/* Start purging... */
 @import 'tailwindcss/base';
-/* purgecss end ignore */
-
-@import 'tailwindcss/components';
-
-@import 'tailwindcss/utilities';
+/* Stop purging. */

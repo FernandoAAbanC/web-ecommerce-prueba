@@ -4,12 +4,15 @@ import { changeCurrency } from "~/redux/actions";
 import { IInitialState } from "~/interfaces/stateRedux";
 import { Tcurrency } from "~/interfaces/stateRedux";
 import ShoppingCard from "~/components/shoppingCard";
+
 const Header = (props) => {
-  const [cartcount, setCartcount] = useState();
-  useEffect(()=>{
-    setCartcount(props.cartcount)
-  },[props.cartcount])
   let dispatch = useDispatch();
+  const [cartcount, setCartcount] = useState();
+
+  useEffect(() => {
+    setCartcount(props.cartcount);
+  }, [props.cartcount]);
+
   return (
     <>
       <div className="flex justify-between fixed w-full h-20 bg-theme-base">
@@ -21,9 +24,11 @@ const Header = (props) => {
         </div>
         <div className="flex flex-row  h-20 w-50">
           <div className="flex justify-center items-center mr-4 h-20 w-30">
-            <label  htmlFor="currency" className="text-theme-base2"> Moneda :</label>
+            <label htmlFor="currency" className="text-theme-base2">
+              {"Moneda : "}              
+            </label>
             <select
-            id="currency"
+              id="currency"
               className="h-8 w-20 "
               onChange={(e) => {
                 let currency = e.target.value as Tcurrency;
@@ -67,6 +72,7 @@ const Header = (props) => {
     </>
   );
 };
+
 const mapStateToProps = (state: IInitialState) => {
   return {
     currency: state.currency,
