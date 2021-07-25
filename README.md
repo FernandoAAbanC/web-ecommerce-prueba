@@ -1,29 +1,35 @@
-# Next.js + Tailwind CSS Example
+# api-ecommerce-prueba Next.js + Tailwind CSS 
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v2.2)](https://blog.tailwindcss.com/tailwindcss-2-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+Genera proyecto con tailwind: 
+css npx create-next-app --example with-tailwindcss with-tailwindcss-app
 
-It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-mode) for Tailwind CSS.
+Este Web fue desarrollada con Node js para el server productivo, Next Js, Typescript, Tailwind css, axios, Redux
 
-## Preview
+Para utilizarlo debera:
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+1) descargar el repositorio.
+2) instalar las dependencias "npm i" o "npm install"
+3) inicializar el servidor "npm run dev"
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+Podra encontrar comentarios utiles marcados con la palabra //TODO:
 
-## Deploy your own
+Puede intalar el complemento de visual code "Todo tree" para visualizar los comentarios de la siguiente forma
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+![Captura de Pantalla 2021-07-25 a la(s) 12 08 52 p m](https://user-images.githubusercontent.com/87707548/126907458-4cb2b4d4-8310-480e-9884-918ea346c1bb.png)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+index 
 
-## How to use
+![Captura de Pantalla 2021-07-25 a la(s) 12 12 34 p m](https://user-images.githubusercontent.com/87707548/126907543-6d92058a-b4da-40c9-86c3-4ba81c72bd7d.png)
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Carrito de compras 
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+![Captura de Pantalla 2021-07-25 a la(s) 12 14 18 p m](https://user-images.githubusercontent.com/87707548/126907572-21eba7a8-1390-4bf0-a679-262c15dfd6c2.png)
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Detalle de compra
+
+![Captura de Pantalla 2021-07-25 a la(s) 12 15 49 p m](https://user-images.githubusercontent.com/87707548/126907618-89684267-839e-407f-8374-f2dee0963249.png)
+
+Agradecimiento por la compra
+
+![Captura de Pantalla 2021-07-25 a la(s) 12 16 42 p m](https://user-images.githubusercontent.com/87707548/126907642-2e3e1f36-85eb-4ab9-951a-b70727fb4a00.png)
+
