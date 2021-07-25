@@ -7,8 +7,7 @@ import { connect } from "react-redux";
 
 import { IInitialState } from "~/interfaces/stateRedux";
 
-const Home = (props) => {
- 
+const Home = () => {
   const [products, setProducts] = useState<ICars[]>();
 
   useEffect(() => {

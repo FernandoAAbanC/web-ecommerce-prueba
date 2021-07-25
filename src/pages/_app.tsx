@@ -5,8 +5,7 @@ import Header from "~/components/header";
 
 import { Provider } from "react-redux";
 import store from "~/redux/store";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
 
 function App({ Component, pageProps }) {
   return (
@@ -20,11 +19,10 @@ function App({ Component, pageProps }) {
           key="title"
         />
       </Head>
-     
+
       <Provider store={store}>
-       
-      <Header />
-      
+        <Header />
+
         <Component {...pageProps} />
       </Provider>
     </>

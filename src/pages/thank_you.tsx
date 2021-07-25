@@ -10,7 +10,7 @@ const ThankYou = (props: IInitialState) => {
     dispatch(emptyCart());
   }, []);
   return (
-    <div className="flex flex-col  justify-center items-center min-h-screen py-2 top-32 text-theme-base">
+    <div className="flex flex-col  justify-center items-center text-center min-h-screen py-2 top-32 text-theme-base">
       <Head>
         <title>Gracias por tu compra</title>
         <link rel="icon" href="/favicon.ico" />

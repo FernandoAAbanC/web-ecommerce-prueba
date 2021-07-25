@@ -1,5 +1,3 @@
-
-
 export interface ICars {
   _id: string;
   name: string;

@@ -16,10 +16,10 @@ const ShoppingCard = (props: IInitialState) => {
   return (
     <div
       id="ShoppingCart"
-      className="hidden fixed flex-col  items-center top-20 w-80 right-0 h-72 bg-theme-base3 "
+      className="hidden fixed flex-col  items-center top-20 w-80 right-2 h-72 bg-white shadow-md"
     >
       <div
-        className="flex justify-center items-center font-bold bg-theme-base border-2 border-theme-base3 text-theme-base3 w-full h-8"
+        className="flex justify-center items-center font-bold bg-theme-base border-2 rounded cursor-pointer border-theme-base3 text-white w-full h-8"
         onClick={() => {
           let modal = document.getElementById("ShoppingCart");
           modal.style.display = "none";
@@ -63,11 +63,10 @@ const ShoppingCard = (props: IInitialState) => {
                 </div>
               </div>
               <div
-                className="flex rounded-tr justify-center items-center stick w-4 h-4 bg-theme-base text-theme-base2"
+                className="flex rounded-tr justify-center items-center stick w-4 h-4 cursor-pointer bg-theme-base text-theme-base2"
                 onClick={() => dispatch(removeFromCart(item._id))}
               >
-                {" "}
-                x
+                {"x"}
               </div>
             </div>
           );
@@ -75,7 +74,7 @@ const ShoppingCard = (props: IInitialState) => {
       </div>
       <div className="">
         {shoppingCart
-          ? `Total : ${formatoCurrency(
+          ? `Total : $ ${formatoCurrency(
               shoppingCart.reduce((sum, item) => {
                 return (
                   sum +
@@ -84,12 +83,12 @@ const ShoppingCard = (props: IInitialState) => {
                     : item.price_usd * item.cantidad)
                 );
               }, 0)
-            )}`
+            )} ${props.currency}`
           : null}
       </div>
       <div className="">
         <button
-          className="bg-theme-base2 text-theme-base w-32 h-8 m-2"
+          className="rounded bg-theme-base2 text-theme-base w-32 h-8 m-2"
           onClick={() => {
             dispatch(emptyCart());
           }}
@@ -98,7 +97,7 @@ const ShoppingCard = (props: IInitialState) => {
         </button>
         <button
           onClick={() => (location.href = "/detail")}
-          className="bg-theme-base text-theme-base2 w-32 h-8 m-2"
+          className="rounded bg-theme-base text-theme-base2 w-32 h-8 m-2"
         >
           comprar
         </button>

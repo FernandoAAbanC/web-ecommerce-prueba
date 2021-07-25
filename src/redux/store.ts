@@ -7,7 +7,7 @@ import reducer from "./redux";
 import {IInitialState} from "~/interfaces/stateRedux"
 
 
-//Obtiene el store almacenado en localstorage
+//TODO:Obtiene el store almacenado en localstorage
 export const loadState = ():IInitialState => {
   try {
     let serializedState = localStorage.getItem("ecommerce-xcaret");
@@ -28,13 +28,11 @@ const store = createStore(
   applyMiddleware(thunk) //aplica el Middleware para comunicarse con la API
 );
 
-//Actualiza el arreglo almacenado en localstorage
+// TODO: Actualiza el arreglo almacenado en localstorage
 const saveState = state => {
   try {
     let serializedState = JSON.stringify(state);
-    /*if(process.env.NODE_ENV === "production") {
-			serializedState = cifrar(serializedState);
-		}*/
+    
     localStorage.setItem("ecommerce-xcaret", serializedState);
     localStorage.setItem("ecommerce-xcaret_version", "1.0.0");
   } catch (err) {

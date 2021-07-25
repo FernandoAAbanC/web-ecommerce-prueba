@@ -15,21 +15,21 @@ const Header = (props) => {
 
   return (
     <>
-      <div className="flex justify-between fixed w-full h-20 bg-theme-base">
+      <div className="flex justify-between fixed w-full h-20 bg-theme-base z-10">
         <div
           onClick={() => (location.href = "/")}
-          className="flex cursor-pointer justify-center mt-auto mb-auto ml-3 items-center font-bold border-4 border-theme-base3 text-theme-base3 border-opacity-50 h-10 w-32"
+          className="flex cursor-pointer justify-center mt-auto mb-auto ml-3 items-center font-bold border-4 rounded border-white text-theme-base3 border-opacity-50 h-10 w-32"
         >
           Inicio
         </div>
         <div className="flex flex-row  h-20 w-50">
-          <div className="flex justify-center items-center mr-4 h-20 w-30">
+          <div className="flex border-4 justify-center items-center mr-1 h-10 w-30 border-opacity-50 rounded pl-2 pr-2 self-center">
             <label htmlFor="currency" className="text-theme-base2">
-              {"Moneda : "}              
+              {`Moneda : `}
             </label>
             <select
               id="currency"
-              className="h-8 w-20 "
+              className="h-6 w-20 rounded ml-3"
               onChange={(e) => {
                 let currency = e.target.value as Tcurrency;
                 dispatch(changeCurrency(currency));
@@ -62,7 +62,7 @@ const Header = (props) => {
                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
               />
             </svg>
-            <label className=" cursor-pointer flex w-4 h-4 justify-center items-center text-theme-base fixed  border-white right-6 top-3 bg-theme-base2 rounded-lg ">
+            <label className="cursor-pointer flex w-4 h-4 justify-center items-center text-white text-xs font-bold fixed border-2 border-white right-6 top-3 bg-theme-base rounded-lg ">
               {cartcount}
             </label>
           </div>

@@ -36,6 +36,7 @@ const Card = (props: IProps) => {
           <p className="flex  text-sm  leading-sm">{product?.maker}</p>
           {product?.models.length ? (
             <select
+            className="border-2 border-theme-base rounded "
               name=""
               id=""
               onChange={(e) => (product.modeloSelect = e.target.value)}
@@ -70,7 +71,7 @@ const Card = (props: IProps) => {
         </p>
       </div>
       <button
-        className="bg-theme-base w-full flex justify-center items-center py-2 text-theme-base2 font-semibold transition duration-300 hover:bg-teal-500"
+        className="bg-theme-base w-full flex justify-center items-center py-2 text-white font-semibold transition duration-300 hover:bg-teal-500"
         onClick={() => {
           toast.success(
             `Se agrego : ${product.maker} ${product.name}`,
@@ -80,8 +81,7 @@ const Card = (props: IProps) => {
           );
           dispatch(addToCart(product));
         }}
-      >
-        
+      >        
         Agregar al carrito
       </button>
     </div>
